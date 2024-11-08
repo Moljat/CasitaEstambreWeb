@@ -1,8 +1,11 @@
 
 import React from "react";
 import Image from 'next/image'
+import Link from 'next/link';
+
 
 export default function Header() {
+
     return (
         <header 
         className="bg-cover bg-fixed bg-no-repeat bg-center text-white py-20" 
@@ -33,9 +36,9 @@ export default function Header() {
 
         <nav>
           <ul className="flex justify-around space-x-16 ">
-            <li><a href="" className="hover:text-gray-400">Home</a></li>
-            <li><a href="/about" className="hover:text-gray-400">About</a></li>
-            <li><a href="/services" className="hover:text-gray-400">Services</a></li>
+            <li> <Link href="/inicio" > Inicio</Link> </li>
+            <li> <Link href="/consulta_productos" > Consulta de productos</Link> </li>
+            <li> <Link href="/components" > Consulta de productos</Link> </li>
             <li><a href="/contact" className="hover:text-gray-400">Contact</a></li>
             
           </ul>
