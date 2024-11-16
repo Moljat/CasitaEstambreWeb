@@ -1,19 +1,23 @@
-// src/app/layout.js
+'use client';  // Asegúrate de que este código se ejecute solo en el cliente
+
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';  // Importa el hook para la redirección
 import './globals.css';
 import Header from './components/header';
-
-export const metadata = {
-  title: 'Casita de estambre',
-  description: 'Sitio web de Casita de estambre',
-};
+import InicioSesion from './components/inicioSesion';
 
 export default function RootLayout({ children }) {
-  return (
-    <html lang="es">
-      <body>
-        <Header /> 
-        <main>{children}</main> 
-      </body>
-    </html>
-  );
+  
+
+ 
+
+    return (
+      <html lang="es">
+        <body>
+          <Header />
+          <main>{children}</main>
+        </body>
+      </html>
+    );
+  
 }
