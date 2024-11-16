@@ -1,12 +1,15 @@
 
 import React from "react";
 import Image from 'next/image'
+import Link from 'next/link';
+
 
 export default function Header() {
+
     return (
         <header 
-        className="bg-cover bg-fixed bg-no-repeat bg-center text-white py-20" 
-        style={{ backgroundImage: "url('header.jpg')" }}
+        className="bg-cover   bg-no-repeat  text-black py-20  hover:shadow-indigo-500/40" 
+        style={{ backgroundImage: "url('headerCasita.jpeg')" }}
         >
 
       
@@ -15,12 +18,14 @@ export default function Header() {
         <div className="flex items-center ">
             
             <Image
-            src="/window.svg"
-            width={75}
-            height={75}
+            src="/shesh.png"
+            
+            width={150}
+            height={150}
             alt="Picture of the author"
             style={ {
-                paddingRight: "30px"
+                paddingRight: "30px",
+                
             }} />
           
           <h1 className="text-3xl font-bold" style={[
@@ -32,10 +37,10 @@ export default function Header() {
         </div>
 
         <nav>
-          <ul className="flex justify-around space-x-16 ">
-            <li><a href="" className="hover:text-gray-400">Home</a></li>
-            <li><a href="/about" className="hover:text-gray-400">About</a></li>
-            <li><a href="/services" className="hover:text-gray-400">Services</a></li>
+          <ul className="flex justify-around space-x-16 cursor-pointer ">
+            <li className=" hover:shadow-neutral-950 "> <Link href="/inicio" > Inicio</Link> </li>
+            <li> <Link href="/consulta_productos" > Consulta de productos</Link> </li>
+            <li> <Link href="/agregar_producto" > Agregar Productos</Link> </li>
             <li><a href="/contact" className="hover:text-gray-400">Contact</a></li>
             
           </ul>
