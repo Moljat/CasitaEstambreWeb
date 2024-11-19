@@ -2,16 +2,18 @@
 
 import React, { useState } from "react";
 
-const ProductForm = () => {
+const ProveedorForm = () => {
     const [formData, setFormData] = useState({
-        IDproductos: "",
-        Nombre_Producto: "",
-        Existencias: "",
-        Precio: "",
-        Descripcion: "",
-        ID_proveedor: "",
+        IDproveedor: "",
+        NomProveedor: "",
+        ApellPaProv: "",
+        ApellMaProv: "",
+        Celular: "",
+        Compañia: "",
+        Folio: "",
+        Fecha_Alta: "",
     });
-
+    
     const [responseMessage, setResponseMessage] = useState("");
 
     const handleChange = (e) => {
@@ -23,7 +25,7 @@ const ProductForm = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch("/api/RegistroProducto", {
+            const response = await fetch("/api/AgregarProveedor", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -33,7 +35,7 @@ const ProductForm = () => {
 
             const result = await response.json();
             if (response.ok) {
-                setResponseMessage("Producto agregado exitosamente.");
+                setResponseMessage("Proveedor agregado exitosamente.");
             } else {
                 setResponseMessage(`Error: ${result.error}`);
             }
@@ -48,71 +50,96 @@ const ProductForm = () => {
             <h1>Agregar Producto</h1>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>ID Producto:</label>
-                    <input
-                        type="text"
-                        name="IDproductos"
-                        value={formData.IDproductos}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Nombre Producto:</label>
-                    <input
-                        type="text"
-                        name="Nombre_Producto"
-                        value={formData.Nombre_Producto}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Existencias:</label>
-                    <input
-                        type="number"
-                        name="Existencias"
-                        value={formData.Existencias}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Precio:</label>
-                    <input
-                        type="number"
-                        step="0.01"
-                        name="Precio"
-                        value={formData.Precio}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Descripción:</label>
-                    <input
-                        type="text"
-                        name="Descripcion"
-                        value={formData.Descripcion}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div>
                     <label>ID Proveedor:</label>
                     <input
                         type="text"
-                        name="ID_proveedor"
-                        value={formData.ID_proveedor}
+                        name="IDproveedor"
+                        value={formData.IDproveedor}
                         onChange={handleChange}
                         required
                     />
                 </div>
-                <button type="submit">Agregar Producto</button>
+                <div>
+                    <label>Nombre Proveedor:</label>
+                    <input
+                        type="text"
+                        name="NomProveedor"
+                        value={formData.NomProveedor}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div>
+                    <label>Apellido Paterno</label>
+                    <input
+                        type="text"
+                        name="ApellPaProv"
+                        value={formData.ApellPaProv}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div>
+                    <label>Apellido Materno</label>
+                    <input
+                        type="text"
+                        name="ApellMaProv"
+                        value={formData.ApellMaProv}
+                        onChange={handleChange}
+                        required
+                    />
+
+                </div>
+                <div>
+                    <label>Celular</label>
+                    <input
+                        type="text"
+                        name="Celular"
+                        value={formData.Celular}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div>
+                    <label>Compañia</label>
+                    <input
+                        type="text"
+                        name="Compañia"
+                        value={formData.Compañia}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+               
+                  
+                <div>
+                    <label>Folio</label>
+                    <input
+                        type="text"
+                        name="Folio"
+                        value={formData.Folio}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div>
+                    <label>Fecha de Alta</label>
+                    <input
+                        type="date"
+                        name="Fecha_Alta"
+                        value={formData.Fecha_Alta}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                
+
+
+                <button type="submit">Agregar Proveedor</button>
             </form>
             {responseMessage && <p>{responseMessage}</p>}
         </div>
     );
 };
 
-export default ProductForm;
+export default ProveedorForm;

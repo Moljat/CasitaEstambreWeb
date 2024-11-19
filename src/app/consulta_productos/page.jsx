@@ -3,7 +3,7 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
+
 
 
 
@@ -78,7 +78,7 @@ export default function ConsultaProductos() {
               </button>
             </div>
           ) : (
-            <table className="border-separate table-auto border-collapse"
+            <table className="border-separate table-auto "
             style={
               { width: "50%" ,
                borderCollapse: "collapse",

@@ -1,4 +1,6 @@
 
+"use client";
+
 import React from "react";
 import Image from 'next/image'
 import Link from 'next/link';
@@ -52,8 +54,8 @@ export default function Header() {
               <Link href="/agregar_producto">Agregar Productos</Link>
             </li>
             <li>
-              <a href="/contact" className="hover:text-gray-400">
-                Contact
+              <a href="/agregar_proveedor" className="hover:text-gray-400">
+                Agregar Proveedor
               </a>
             </li>
           </ul>
@@ -85,8 +87,8 @@ export default function Header() {
               <Link href="/agregar_producto">Agregar Productos</Link>
             </li>
             <li>
-              <a href="/contact" className="hover:text-gray-400">
-                Contact
+              <a href="/agregar_proveedor" className="hover:text-gray-400">
+                Agregar Proveedor
               </a>
             </li>
           </ul>
