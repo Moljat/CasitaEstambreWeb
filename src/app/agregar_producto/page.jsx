@@ -1,34 +1,118 @@
-import React from 'react';
+"use client";
 
-const AgregarProducto = () => {
+import React, { useState } from "react";
+
+const ProductForm = () => {
+    const [formData, setFormData] = useState({
+        IDproductos: "",
+        Nombre_Producto: "",
+        Existencias: "",
+        Precio: "",
+        Descripcion: "",
+        ID_proveedor: "",
+    });
+
+    const [responseMessage, setResponseMessage] = useState("");
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await fetch("/api/RegistroProducto", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                setResponseMessage("Producto agregado exitosamente.");
+            } else {
+                setResponseMessage(`Error: ${result.error}`);
+            }
+        } catch (error) {
+            setResponseMessage("Error al conectar con el servidor.");
+            console.error("Error:", error);
+        }
+    };
+
     return (
         <div>
             <h1>Agregar Producto</h1>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="nombre">Nombre del Producto:</label>
-                    <input type="text" id="nombre" name="nombre" />
+                    <label>ID Producto:</label>
+                    <input
+                        type="text"
+                        name="IDproductos"
+                        value={formData.IDproductos}
+                        onChange={handleChange}
+                        required
+                    />
                 </div>
                 <div>
-                    <label htmlFor="descripcion">Descripción:</label>
-                    <textarea id="descripcion" name="descripcion"></textarea>
+                    <label>Nombre Producto:</label>
+                    <input
+                        type="text"
+                        name="Nombre_Producto"
+                        value={formData.Nombre_Producto}
+                        onChange={handleChange}
+                        required
+                    />
                 </div>
                 <div>
-                    <label htmlFor="precio">Precio:</label>
-                    <input type="number" id="precio" name="precio" />
+                    <label>Existencias:</label>
+                    <input
+                        type="number"
+                        name="Existencias"
+                        value={formData.Existencias}
+                        onChange={handleChange}
+                        required
+                    />
                 </div>
                 <div>
-                    <label htmlFor="categoria">Categoría:</label>
-                    <select id="categoria" name="categoria">
-                        <option value="ropa">Ropa</option>
-                        <option value="accesorios">Accesorios</option>
-                        <option value="otros">Otros</option>
-                    </select>
+                    <label>Precio:</label>
+                    <input
+                        type="number"
+                        step="0.01"
+                        name="Precio"
+                        value={formData.Precio}
+                        onChange={handleChange}
+                        required
+                    />
                 </div>
-                <button type="submit">Agregar</button>
+                <div>
+                    <label>Descripción:</label>
+                    <input
+                        type="text"
+                        name="Descripcion"
+                        value={formData.Descripcion}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div>
+                    <label>ID Proveedor:</label>
+                    <input
+                        type="text"
+                        name="ID_proveedor"
+                        value={formData.ID_proveedor}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <button type="submit">Agregar Producto</button>
             </form>
+            {responseMessage && <p>{responseMessage}</p>}
         </div>
     );
 };
 
-export default AgregarProducto;
+export default ProductForm;
