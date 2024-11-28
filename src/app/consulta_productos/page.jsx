@@ -1,4 +1,5 @@
 // src/app/consulta_productos/page.jsx
+// src/app/consulta_productos/page.jsx
 
 "use client";
 
