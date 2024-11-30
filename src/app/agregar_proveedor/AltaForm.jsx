@@ -111,7 +111,7 @@ const AltaForm = () => {
   return (
    
         <div style={styles.formContainer}>
-          <h1 style={styles.formTitle}>Agregar Producto</h1>
+          <h1 style={styles.formTitle}>Agregar Proveedor</h1>
           <form onSubmit={handleSubmit} style={styles.form}>
             <div style={styles.formGroup}>
               <label htmlFor="IDproveedor" style={styles.formLabel}>ID Proveedor:</label>
