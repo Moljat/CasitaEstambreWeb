@@ -17,7 +17,7 @@ export default function Header() {
 
     return (
       <header
-      className="bg-cover bg-no-repeat py-20 hover:shadow-indigo-500/40"
+      className="bg-cover bg-no-repeat py-20 hover:shadow-indigo-500/40   w-ful shadow-md z-10"
       style={{ backgroundImage: "url('headerCasita.jpeg')" }}
     >
       <div className="flex justify-between items-center px-6">
@@ -76,7 +76,7 @@ export default function Header() {
                     href="/agregar_proveedor"
                     className="relative z-10 text-black group-hover:text-white px-2 transition-all duration-300"
                   >
-                    Agregar Proveedor
+                    Proveedores
                   </a>
                   <span className="absolute inset-0 bg-black opacity-0 blur-md filter transition-all duration-300 group-hover:opacity-100 group-hover:blur-lg rounded-md"></span>
                 </li>

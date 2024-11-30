@@ -35,11 +35,13 @@ export default async function handler(req, res) {
             host: process.env.DB_HOST,
             user: process.env.DB_USER,
             port: process.env.DB_PORT,
-            password:BdEeL0932486167$,
+            password:process.env.DB_PASSWORD,
             database: process.env.DB_NAME,
         });
 
         console.log("Conexión a la base de datos exitosa");
+
+        await connection.query('USE casitaestambrebd');
 
         try {
             const query = `
@@ -68,6 +70,7 @@ export default async function handler(req, res) {
         } catch (error) {
             console.error("Error al ejecutar el query:", error);
             res.status(500).json({ error: "Error al insertar datos en la base de datos." });
+            
         } finally {
             await connection.end();
         }

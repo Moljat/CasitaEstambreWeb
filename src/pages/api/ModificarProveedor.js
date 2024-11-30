@@ -7,9 +7,9 @@ export default async function handler(req, res) {
         return res.status(405).json({ error: 'Método no permitido. Solo POST es aceptado.' });
     }
 
-    const { IDproductos, Nombre_Producto, Existencias, Precio, Descripcion, ID_proveedor } = req.body;
+    const { IDproveedor, NomProveedor, ApellPaProv, ApellMaProv, Celular, Compañia, Folio, Fecha_Alta } = req.body;
 
-    if (!IDproductos || !Nombre_Producto || !Existencias || !Precio || !Descripcion || !ID_proveedor) {
+    if (!IDproveedor || !NomProveedor || !ApellPaProv || !ApellMaProv || !Celular || !Compañia || !Folio || !Fecha_Alta) {
         return res.status(400).json({ error: 'Todos los campos son requeridos.' });
     }
 
@@ -19,26 +19,39 @@ export default async function handler(req, res) {
             user: process.env.DB_USER,
             port: process.env.DB_PORT,
             password: process.env.DB_PASSWORD,
-            database: "casitaestambredb",
+            database: process.env.DB_NAME,
         });
 
         console.log('Conexión a la base de datos exitosa');
+
         await connection.query('USE casitaestambrebd');
 
         try {
             const query = `
-                INSERT INTO productos 
-                (IDproductos, Nombre_Producto, Existencias, Precio, Descripcion, ID_proveedor)
-                VALUES (?, ?, ?, ?, ?, ?)
+                UPDATE proveedores 
+                SET NomProveedor = ?, 
+                    ApellPaProv = ?, 
+                    ApellMaProv = ?, 
+                    Celular = ?, 
+                    Compañia = ?, 
+                    Folio = ?, 
+                    Fecha_Alta = ?
+                WHERE IDproveedor = ?
             `;
-            const values = [IDproductos, Nombre_Producto, Existencias, Precio, Descripcion, ID_proveedor];
+
+            const values = [NomProveedor, ApellPaProv, ApellMaProv, Celular, Compañia, Folio, Fecha_Alta, IDproveedor];
+
 
             const [result] = await connection.execute(query, values);
 
-            res.status(200).json({ success: true, result });
+            if (result.affectedRows > 0) {
+                res.status(200).json({ success: true, message: 'Proveedor actualizado correctamente.', result });
+            } else {
+                res.status(404).json({ error: 'Proveedor no encontrado.' });
+            }
         } catch (error) {
             console.error('Error al ejecutar el query:', error);
-            res.status(500).json({ error: 'Error al insertar datos en la base de datos.' });
+            res.status(500).json({ error: 'Error al actualizar datos en la base de datos.' });
         } finally {
             await connection.end();
         }

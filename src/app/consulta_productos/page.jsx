@@ -12,6 +12,13 @@ export default function ConsultaProductos() {
   const [productos, setProductos] = useState([]);
   const [error, setError] = useState(null);
 
+  const [busqueda, setBusqueda] = useState("");
+
+  // Filtrar productos que contengan el término de búsqueda en el nombre
+  const productosFiltrados = productos.filter((producto) =>
+    producto.Nombre_Producto.toLowerCase().includes(busqueda.toLowerCase())
+  );
+
   useEffect(() => {
     // Hacer la petición al endpoint API de Next.js
     const fetchData = async () => {
@@ -40,88 +47,73 @@ export default function ConsultaProductos() {
   if (error) return <p>{error}</p>;
 
   return (
-        <div>
-        <h1 
-        style={
-          { textAlign: "center" ,
-           fontSize: "40px" ,
-           color: "var(--geist-foreground)" }
-        }>Lista de Productos</h1>
-       
-       
-        {productos.length === 0 ? (
-            <div 
-            style={
-              { display: "flex" ,
-               justifyContent: "center" ,
-               alignItems: "center" ,
-              height: "200px" ,
-               fontSize: "24px" ,
-               color: "var(--geist-foreground)" ,
-               backgroundColor: "var(--geist-background)" }
-            }>Cargando productos...
-              <button>
-                <svg
-                  className="animate-spin h-10 w-10 mr-3 text-blue-500"
-                  viewBox="0 0 100 100"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="40"
-                    stroke="currentColor"
-                    strokeWidth="5"
-                    strokeDasharray="60 20"
-                  />
-                </svg>
-              </button>
-            </div>
-          ) : (
-            <table className="border-separate table-auto "
-            style={
-              { width: "50%" ,
-               borderCollapse: "collapse",
-               margin: "auto",
-               paddingLeft: "15px",
-                paddingRight: "15px"
-              }
-            }>
-              <thead>
-                <tr className='bg-gray-600'
-                style={
-                  { 
-                    alignContent: "center" ,
-                   color: "var(--geist-background)" }
-                }>
-                  <th style={celdaTabla}>Nombre</th>
-                  <th style={celdaTabla}>Precio</th>
-                  <th style={celdaTabla}>Existencias</th>
-                  <th style={celdaTabla}>Descripción</th>
-                  
-                </tr>
-              </thead>
-              
-              <tbody>
-                {productos.map((producto) => (
+    <div>
+    <h1 style={{ textAlign: "center", fontSize: "40px", color: "var(--geist-foreground)" }}>
+      Lista de Productos
+    </h1>
 
-                 
-                  <tr key={producto.IDproductos}>
-                    <td style={celdaTabla}>{producto.Nombre_Producto}</td>
-                    <td style={celdaTabla}>${producto.Precio}</td>
-                    <td style={celdaTabla}>{producto.Existencias}</td>
-                    <td style={celdaTabla}>{producto.Descripcion}</td>
-                    
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
+    {/* Campo de búsqueda */}
+    <div style={{ textAlign: "center", marginBottom: "20px" }}>
+      <input
+        type="text"
+        placeholder="Buscar por nombre..."
+        value={busqueda}
+        onChange={(e) => setBusqueda(e.target.value)}
+        style={{
+          padding: "10px",
+          fontSize: "16px",
+          width: "50%",
+          borderRadius: "5px",
+          border: "1px solid #ccc"
+        }}
+      />
+    </div>
 
+    {productosFiltrados.length === 0 ? (
+      <div 
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "200px",
+          fontSize: "24px",
+          color: "var(--geist-foreground)",
+          backgroundColor: "var(--geist-background)"
+        }}
+      >
         
-        </div>
+      </div>
+    ) : (
+      <table className="border-separate table-auto"
+        style={{
+          width: "50%",
+          borderCollapse: "collapse",
+          margin: "auto",
+          paddingLeft: "15px",
+          paddingRight: "15px"
+        }}
+      >
+        <thead>
+          <tr className='bg-gray-600' style={{ textAlign: "center", color: "var(--geist-background)" }}>
+            <th style={celdaTabla}>Nombre</th>
+            <th style={celdaTabla}>Precio</th>
+            <th style={celdaTabla}>Existencias</th>
+            <th style={celdaTabla}>Descripción</th>
+          </tr>
+        </thead>
 
-  
-  );
-}
+        <tbody>
+          {productosFiltrados.map((producto) => (
+            <tr key={producto.IDproductos}>
+              <td style={celdaTabla}>{producto.Nombre_Producto}</td>
+              <td style={celdaTabla}>${producto.Precio}</td>
+              <td style={celdaTabla}>{producto.Existencias}</td>
+              <td style={celdaTabla}>{producto.Descripcion}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    )}
+  </div>
+);
+};
