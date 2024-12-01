@@ -17,27 +17,25 @@ export default function RootLayout({ children }) {
     toast.success('Bienvenido'+ setIsAuthenticated);
   }, []);
 
-  if (isAuthenticated === null) {
-    // Mientras se verifica el estado de autenticación, puedes mostrar un cargando o algo similar
-    return <div>Loading...</div>;
-
-  }
+ 
 
   return (
     <html lang="es">
       <body>
+        
         {isAuthenticated ? (
           <>
-          
+          <Toaster />
             <Header />
             <main>{children}</main> {/* Muestra el contenido si está autenticado */}
           </>
         ) : (
           <div>
             <h2>Por favor, inicie sesión</h2>
-            <LoginPage /> 
+            <LoginPage></LoginPage>{/* Redirige al login si no está autenticado */}
           </div>
         )}
+        
       </body>
     </html>
   );
