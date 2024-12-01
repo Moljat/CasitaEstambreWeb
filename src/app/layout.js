@@ -31,8 +31,9 @@ export default function RootLayout({ children }) {
           </>
         ) : (
           <div>
+     
             <h2>Por favor, inicie sesión</h2>
-            <LoginPage></LoginPage>{/* Redirige al login si no está autenticado */}
+            <LoginPage />
           </div>
         )}
         

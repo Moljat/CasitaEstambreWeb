@@ -35,7 +35,7 @@ export default function Header() {
           <h1
             className="text-3xl font-bold"
             style={{
-              fontFamily: "var(--font-geist-sans)",
+              fontFamily: "Roboto",
             }}
           >
             Casita de estambre
@@ -78,6 +78,15 @@ export default function Header() {
                     className="relative z-10 text-black group-hover:text-white px-2 transition-all duration-300"
                   >
                     Proveedores
+                  </a>
+                  <span className="absolute inset-0 bg-black opacity-0 blur-md filter transition-all duration-300 group-hover:opacity-100 group-hover:blur-lg rounded-md"></span>
+                </li>
+                <li className="relative group">
+                  <a
+                    href="/ventas"
+                    className="relative z-10 text-black group-hover:text-white px-2 transition-all duration-300"
+                  >
+                    Ventas
                   </a>
                   <span className="absolute inset-0 bg-black opacity-0 blur-md filter transition-all duration-300 group-hover:opacity-100 group-hover:blur-lg rounded-md"></span>
                 </li>

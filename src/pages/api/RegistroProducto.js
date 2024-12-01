@@ -38,7 +38,8 @@ export default async function handler(req, res) {
             res.status(200).json({ success: true, result });
         } catch (error) {
             console.error('Error al ejecutar el query:', error);
-            res.status(500).json({ error: 'Error al insertar datos en la base de datos.' });
+            const sqlMessage = error.sqlMessage;
+            res.status(500).json({ error: 'Error al insertar datos en la base de datos. \n' + sqlMessage });
         } finally {
             await connection.end();
         }

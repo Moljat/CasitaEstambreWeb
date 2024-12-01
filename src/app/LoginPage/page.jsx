@@ -11,15 +11,26 @@ const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
-    // Simulación de una API de login (reemplázalo con la llamada real)
-    if (email === "usuario@ejemplo.com" && password === "123") {
-      const token = "yd37xcnsn12nxiam1"; // Esto normalmente lo recibirías de la API
-      
-      localStorage.setItem("authToken", token);  // Guarda el token en localStorage
-      window.location.reload(); 
-    } else {
-      setError("Credenciales incorrectas");
+  
+    try {
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+  
+      if (response.ok) {
+        const { token } = await response.json();
+        localStorage.setItem("authToken", token); // Guarda el token en localStorage
+        window.location.reload(); // Recarga la página
+      } else {
+        const { error } = await response.json();
+        setError(error || "Error desconocido");
+      }
+    } catch (err) {
+      setError("Ocurrió un error. Por favor, inténtalo de nuevo.");
     }
   };
 

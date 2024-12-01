@@ -5,8 +5,9 @@ const LogoutButton = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('authToken');  // Elimina el token
-    router.push('/inicio');  // Redirige a la página de inicio de sesión
-    window.location.reload();  // Recarga la
+      // Redirige a la página de inicio de sesión
+    window.location.reload();  
+    router.push('/inicio');
   };
 
   return <button onClick={handleLogout}>Cerrar sesión</button>;

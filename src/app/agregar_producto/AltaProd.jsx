@@ -82,6 +82,10 @@ const ProductForm = (selectedId) => {
           marginTop: "20px",
           fontSize: "1rem",
           color: "#28a745",
+          wordWrap: "break-word", // Permite que las palabras largas se dividan
+          wordBreak: "break-word", // Maneja el comportamiento de las palabras largas
+          whiteSpace: "normal",
+          
         },
       };
 
@@ -193,7 +197,7 @@ const ProductForm = (selectedId) => {
             <input
               type="text"
               name="ID_proveedor"
-              value={formData.ID_proveedor}
+              value={formData.ID_proveedor || ""}   
               readOnly
               
               required
