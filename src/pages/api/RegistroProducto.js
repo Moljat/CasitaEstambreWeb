@@ -19,7 +19,7 @@ export default async function handler(req, res) {
             user: process.env.DB_USER,
             port: process.env.DB_PORT,
             password: process.env.DB_PASSWORD,
-            database: "casitaestambredb",
+            database: process.env.DB_NAME,
         });
 
         console.log('Conexión a la base de datos exitosa');

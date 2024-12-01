@@ -8,7 +8,7 @@ import React, { useEffect, useState } from 'react';
 
 
 
-export default function ConsultaProductos() {
+export default function ProdTable() {
   const [productos, setProductos] = useState([]);
   const [error, setError] = useState(null);
 
@@ -95,7 +95,6 @@ export default function ConsultaProductos() {
       >
         <thead>
           <tr className='bg-gray-600' style={{ textAlign: "center", color: "var(--geist-background)" }}>
-          <th style={celdaTabla}>ID</th>
             <th style={celdaTabla}>Nombre</th>
             <th style={celdaTabla}>Precio</th>
             <th style={celdaTabla}>Existencias</th>
@@ -106,7 +105,6 @@ export default function ConsultaProductos() {
         <tbody>
           {productosFiltrados.map((producto) => (
             <tr key={producto.IDproductos}>
-              <td style={celdaTabla}>{producto.IDproductos}</td>
               <td style={celdaTabla}>{producto.Nombre_Producto}</td>
               <td style={celdaTabla}>${producto.Precio}</td>
               <td style={celdaTabla}>{producto.Existencias}</td>

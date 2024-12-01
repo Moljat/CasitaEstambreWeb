@@ -5,7 +5,7 @@ import mysql from 'mysql2/promise';
 
 export default async function handler(req, res) {
     const { IDproveedor } = req.body;
-    console.log("Proveedorchido: " + IDproveedor);
+    
   try {
     const connection = await mysql.createConnection({ // Conexión a la base de datos
       host: process.env.DB_HOST,

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 const ModificarCom = ({ proveedor , selectedProveedor}) => {
     
@@ -125,9 +126,11 @@ const ModificarCom = ({ proveedor , selectedProveedor}) => {
 
       const result = await response.json();
       if (response.ok) {
-        setResponseMessage("Proveedor modificado exitosamente.");
+        
+        toast.success("Proveedor modificado correctamente");
       } else {
-        setResponseMessage(`Error: ${result.error}`);
+       
+        toast.error("Error al modificar el proveedor");
       }
     } catch (error) {
       setResponseMessage("Error al conectar con el servidor.");
@@ -263,7 +266,7 @@ const ModificarCom = ({ proveedor , selectedProveedor}) => {
             style={styles.formInput}
           />
         </div>
-
+            <Toaster position="top"/>
         <button onClick={() => handleSubmit()}
         type="submit" 
         style={selectedProveedor ? styles.formSubmitButton : styles.formSubmitButtonDisabled} 
