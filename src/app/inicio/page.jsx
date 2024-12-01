@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
+import LogoutButton from "../components/LogoutButton";
 
 export default function Inicio() {
   const [productos, setProductos] = useState([]);
@@ -37,7 +38,7 @@ export default function Inicio() {
     <div>
       <Toaster position="top-right" reverseOrder={false} />
       <h1>Lista de Productos</h1>
-      
+      <LogoutButton />
     </div>
   );
 }
