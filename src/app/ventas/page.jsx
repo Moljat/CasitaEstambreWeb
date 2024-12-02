@@ -2,7 +2,7 @@
 
 
 import React, { useState, useEffect } from 'react';
-import ProdTable from './ProdTable';
+import ProdTable from './ProdtableV';
 import DetalleVentaTable from './DetalleVentaTable';
 import AltaVenta from './AltaVenta';
 
