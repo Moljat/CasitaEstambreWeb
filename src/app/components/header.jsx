@@ -90,6 +90,24 @@ export default function Header() {
                   </a>
                   <span className="absolute inset-0 bg-black opacity-0 blur-md filter transition-all duration-300 group-hover:opacity-100 group-hover:blur-lg rounded-md"></span>
                 </li>
+                <li className="relative group">
+                  <a
+                    href="/conteo_efectivo"
+                    className="relative z-10 text-black group-hover:text-white px-2 transition-all duration-300"
+                  >
+                    Conteo Efectivo
+                  </a>
+                  <span className="absolute inset-0 bg-black opacity-0 blur-md filter transition-all duration-300 group-hover:opacity-100 group-hover:blur-lg rounded-md"></span>
+                </li>
+                <li className="relative group">
+                  <a
+                    href="/admin_empleados"
+                    className="relative z-10 text-black group-hover:text-white px-2 transition-all duration-300"
+                  >
+                    Empleados
+                  </a>
+                  <span className="absolute inset-0 bg-black opacity-0 blur-md filter transition-all duration-300 group-hover:opacity-100 group-hover:blur-lg rounded-md"></span>
+                </li>
               </ul>
             </nav>
 
