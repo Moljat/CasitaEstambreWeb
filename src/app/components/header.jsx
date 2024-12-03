@@ -21,7 +21,7 @@ export default function Header() {
       className="bg-cover  py-20 hover:shadow-indigo-500/40   w-ful shadow-md z-10"
       style={{ backgroundImage: "url('headerCasita.jpeg')" }}
     >
-      <div className="flex justify-between items-center px-6">
+      <div className="flex justify-between items-center px-2">
         <div className="flex items-center">
           <Image
             src="/shesh.png"
@@ -35,14 +35,13 @@ export default function Header() {
           <h1
             className="text-3xl font-bold"
             style={{
-              fontFamily: "Roboto",
+              fontFamily: "CendarVille",
             }}
           >
             Casita de estambre
           </h1>
         </div>
 
-        {/* Menú normal en pantallas grandes */}
           <nav className="hidden lg:flex font-semibold relative text-1xl">
               <ul className="flex justify-around space-x-16 cursor-pointer">
                 <li className="relative group">

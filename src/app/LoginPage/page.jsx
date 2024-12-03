@@ -10,7 +10,7 @@ const LoginPage = () => {
   
 
   const handleLogin = async (e) => {
-    e.preventDefault();
+  
   
     try {
       const response = await fetch("/api/login", {
@@ -24,7 +24,7 @@ const LoginPage = () => {
       if (response.ok) {
         const { token } = await response.json();
         localStorage.setItem("authToken", token); // Guarda el token en localStorage
-        window.location.reload(); // Recarga la página
+        window.location.reload(); 
       } else {
         const { error } = await response.json();
         setError(error || "Error desconocido");

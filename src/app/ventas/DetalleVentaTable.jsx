@@ -4,7 +4,7 @@ import React from "react";
 import { useEffect } from "react";
 
 export default function DetalleVentaTable({ productos, onEliminarProducto, setSubtotal }) {
-
+    let uniqueID = 0;
     
     return (
         <div className="pt-12">
@@ -43,9 +43,9 @@ export default function DetalleVentaTable({ productos, onEliminarProducto, setSu
                     </tr>
                 </thead>
                 <tbody>
-                    {productos.map((prod,index) => (
+                    {productos.map((prod, index) => (
                         <tr
-                            key={`${prod.IDproductos}-${index}`}
+                            key={uniqueID++}
                             style={{
                                 borderBottom: "1px solid #ddd",
                                 backgroundColor: "#fff",

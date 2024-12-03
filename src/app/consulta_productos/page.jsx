@@ -4,6 +4,7 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
+import toast, {Toaster} from 'react-hot-toast';
 
 
 
@@ -27,10 +28,11 @@ export default function ConsultaProductos() {
         
         if (!response.ok) throw new Error('Error en la respuesta del servidor');
         const data = await response.json();
+        toast.success('Productos cargados correctamente');
         setProductos(data);
       } catch (error) {
         console.error('Error al obtener los productos:', error);
-        setError('No se pudo obtener la lista de productos');
+        toast.error('Error al cargar los productos');
       }
     };
 
@@ -48,6 +50,7 @@ export default function ConsultaProductos() {
 
   return (
     <div>
+      <Toaster position="top" reverseOrder={false} />
     <h1 style={{ textAlign: "center", fontSize: "40px", color: "var(--geist-foreground)" }}>
       Lista de Productos
     </h1>

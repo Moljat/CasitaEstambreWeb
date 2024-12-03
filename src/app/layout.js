@@ -25,9 +25,9 @@ export default function RootLayout({ children }) {
         
         {isAuthenticated ? (
           <>
-          <Toaster />
+        
             <Header />
-            <main>{children}</main> {/* Muestra el contenido si está autenticado */}
+            <main>{children}</main> 
           </>
         ) : (
           <div>
