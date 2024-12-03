@@ -18,7 +18,7 @@ export default function Header() {
 
     return (
       <header
-      className="bg-cover bg-no-repeat py-20 hover:shadow-indigo-500/40   w-ful shadow-md z-10"
+      className="bg-cover  py-20 hover:shadow-indigo-500/40   w-ful shadow-md z-10"
       style={{ backgroundImage: "url('headerCasita.jpeg')" }}
     >
       <div className="flex justify-between items-center px-6">
@@ -43,7 +43,7 @@ export default function Header() {
         </div>
 
         {/* Menú normal en pantallas grandes */}
-          <nav className="hidden lg:flex font-semibold relative">
+          <nav className="hidden lg:flex font-semibold relative text-1xl">
               <ul className="flex justify-around space-x-16 cursor-pointer">
                 <li className="relative group">
                   <Link
@@ -105,6 +105,15 @@ export default function Header() {
                     className="relative z-10 text-black group-hover:text-white px-2 transition-all duration-300"
                   >
                     Empleados
+                  </a>
+                  <span className="absolute inset-0 bg-black opacity-0 blur-md filter transition-all duration-300 group-hover:opacity-100 group-hover:blur-lg rounded-md"></span>
+                </li>
+                <li className="relative group">
+                  <a
+                    href="/reg_empleados"
+                    className="relative z-10 text-black group-hover:text-white px-2 transition-all duration-300"
+                  >
+                    Registro de Empleados
                   </a>
                   <span className="absolute inset-0 bg-black opacity-0 blur-md filter transition-all duration-300 group-hover:opacity-100 group-hover:blur-lg rounded-md"></span>
                 </li>

@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
         ) : (
           <div>
      
-            <h2>Por favor, inicie sesión</h2>
+           
             <LoginPage />
           </div>
         )}
