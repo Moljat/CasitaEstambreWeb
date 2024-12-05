@@ -44,7 +44,7 @@ export default function ProdTable() {
   const celdaTabla = {
     padding: "15px",
     textAlign: "center",
-    border: "1px solid #ddd",
+    border: "1px solid black",
     alignItems: "center",
   };
 
@@ -70,7 +70,7 @@ export default function ProdTable() {
           fontSize: "16px",
           width: "100%",
           borderRadius: "5px",
-          border: "1px solid #ccc"
+          border: "1px solid black"
         }}
       />
     </div>
@@ -100,10 +100,11 @@ export default function ProdTable() {
           width: "100%",
           borderCollapse: "collapse",
           margin: "auto",
+          border: "1px solid black"
         }}
       >
         <thead>
-          <tr className='bg-gray-600' style={{ textAlign: "center", color: "var(--geist-background)" }}>
+          <tr className='bg-durazno' style={{ textAlign: "center" }}>
             <th style={celdaTabla}>ID</th>
             <th style={celdaTabla}>Nombre</th>
             <th style={celdaTabla}>Descripción</th>

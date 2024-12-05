@@ -32,13 +32,13 @@ export default function Ayuda() {
         <footer className="bg-transparent"   >
             <div className="pt-96 ">
                 
-                <div className="bg-white">
+                <div className="bg-piel">
                 <h3 className="text-4xl pt-16" style={{ textAlign: 'center', marginBottom: '20px' }}>
                     Preguntas Frecuentes
                 </h3>
                 {preguntasFrecuentes.map((item, index) => (
                     <div key={index}>
-                        <div className="shadow-lg transition ease-in-out delay-50 bg-white hover:-translate-y-1 hover:scale-102 hover:bg-purple-600 hover:text-white duration-600 hover:shadow-inner "
+                        <div className="shadow-lg transition ease-in-out delay-50 bg-piel hover:-translate-y-1 hover:scale-102 hover:bg-purple-600 hover:text-white duration-600 hover:shadow-inner "
                             onClick={() => handleToggle(index)}
                             style={{
                                 
@@ -55,7 +55,7 @@ export default function Ayuda() {
                         {activeIndex === index && (
                             <div
                                 style={{
-                                    backgroundColor: '#f1f1f1',
+                                    backgroundColor: '#E0C8B4',
                                     padding: '10px',
                                     borderRadius: '5px',
                                     marginBottom: '20px',

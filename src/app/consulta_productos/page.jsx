@@ -42,7 +42,7 @@ export default function ConsultaProductos() {
   const celdaTabla = {
     padding: "15px",
     textAlign: "center",
-    border: "1px solid #ddd",
+    border: "1px solid black",
     alignItems: "center",
   };
 
@@ -51,7 +51,7 @@ export default function ConsultaProductos() {
   return (
     <div>
       <Toaster position="top" reverseOrder={false} />
-    <h1 style={{ textAlign: "center", fontSize: "40px", color: "var(--geist-foreground)" }}>
+    <h1 className="text-cafe" style={{ textAlign: "center", fontSize: "40px"}}>
       Lista de Productos
     </h1>
 
@@ -97,7 +97,7 @@ export default function ConsultaProductos() {
         }}
       >
         <thead>
-          <tr className='bg-gray-600' style={{ textAlign: "center", color: "var(--geist-background)" }}>
+          <tr className='bg-durazno' style={{ textAlign: "center", color: "var(--geist-background)" }}>
           <th style={celdaTabla}>ID</th>
             <th style={celdaTabla}>Nombre</th>
             <th style={celdaTabla}>Precio</th>

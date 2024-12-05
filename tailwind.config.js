@@ -10,6 +10,9 @@ export default  {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        durazno: "#c36b3e",
+        cafe: "#b55e3c",
+        piel: "#FFE4CC",
       },
     },
   },

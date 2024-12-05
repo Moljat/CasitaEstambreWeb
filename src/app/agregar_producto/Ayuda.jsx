@@ -31,7 +31,7 @@ export default function Ayuda() {
     ];
 
     return (
-        <footer className="bg-white shadow-lg"    style={{  padding: '5px' }}>
+        <footer className="bg-piel shadow-lg"    style={{  padding: '5px' }}>
             <div style={{ maxWidth: '100%', margin: '0 auto' }}>
                 <h3 className="text-4xl pt-16" style={{ textAlign: 'center', marginBottom: '20px' }}>
                     Preguntas Frecuentes
@@ -39,7 +39,7 @@ export default function Ayuda() {
 
                 {preguntasFrecuentes.map((item, index) => (
                     <div key={index}>
-                        <div className="shadow-lg transition ease-in-out delay-50 bg-white hover:-translate-y-1 hover:scale-102 hover:bg-purple-600 hover:text-white duration-600 hover:shadow-inner "
+                        <div className="shadow-lg transition ease-in-out delay-50 bg-piel hover:-translate-y-1 hover:scale-102 hover:bg-purple-600 hover:text-white duration-600 hover:shadow-inner "
                             onClick={() => handleToggle(index)}
                             style={{
                                 
@@ -56,10 +56,11 @@ export default function Ayuda() {
                         {activeIndex === index && (
                             <div
                                 style={{
-                                    backgroundColor: '#f1f1f1',
+                                    backgroundColor: '#E0C8B4',
                                     padding: '10px',
                                     borderRadius: '5px',
                                     marginBottom: '20px',
+                                    
                                 }}
                             >
                                 <p style={{ margin: 0 }}>{item.respuesta}</p>

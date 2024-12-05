@@ -43,10 +43,10 @@ import Ayuda from './Ayuda';
       <div>
 
         <div  style={styles.pageContainer}>
-          <h1 className='pb-12 text-6xl'
+          <h1 className='pb-12 text-6xl text-cafe'
           style={{
             textAlign: "center",
-            color: "var(--geist-foreground)"
+        
           }}>Gestión de Proveedores</h1>
           
           <div style={styles.buttonContainer}>

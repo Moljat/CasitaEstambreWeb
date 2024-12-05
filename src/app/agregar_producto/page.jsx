@@ -21,7 +21,7 @@ const ProductForm = () => {
     return (
       <div className="pt-20">
         <Toaster />
-         <h1  className="text-8xl bg-transparent " style={{ flexBasis: "100%", textAlign: "center"}}>ALTA DE PRODUCTOS</h1> 
+         <h1  className="text-8xl bg-transparent text-cafe " style={{ flexBasis: "100%", textAlign: "center"}}>ALTA DE PRODUCTOS</h1> 
         <div
         className="flex-grow"
         style={{
