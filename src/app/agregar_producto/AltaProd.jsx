@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { toast, Toaster } from "react-hot-toast";
 
 const ProductForm = (selectedId) => {
     console.log("ID ", selectedId);
@@ -14,6 +15,10 @@ const ProductForm = (selectedId) => {
         Descripcion: "",
         ID_proveedor: "",
     });
+
+    const [errors, setErrors] = useState({
+      IDproductos: false, 
+  });
 
     const styles = {
         container: {
@@ -46,6 +51,7 @@ const ProductForm = (selectedId) => {
         label: {
           fontSize: "1rem",
           color: "#555",
+          hover: "none",
         },
         input: {
           padding: "10px",
@@ -55,19 +61,13 @@ const ProductForm = (selectedId) => {
           outline: "none",
           transition: "border-color 0.3s",
         },
+        inputError: {
+          borderColor: "red", // Bordes rojos si hay un error
+        },
         inputFocus: {
           borderColor: "#28a745",
         },
-        button: {
-          padding: "12px",
-          backgroundColor: "#007bff",
-          color: "white",
-          fontSize: "1rem",
-          border: "none",
-          borderRadius: "4px",
-          cursor: "pointer",
-          transition: "background-color 0.3s",
-        },
+        
         buttonDisabled: {
           padding: "12px",
           backgroundColor: "#cccccc",
@@ -100,7 +100,7 @@ const ProductForm = (selectedId) => {
                 
             }));
         }
-        console.log("ID del coso ", selectedId);
+       
     }, [selectedId]); // Se ejecuta cada vez que selectedId cambia
 
     const handleChange = (e) => {
@@ -110,6 +110,13 @@ const ProductForm = (selectedId) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const idProducto = formData.IDproductos;
+        if (!/^\d+$/.test(idProducto)) {
+            toast.error("El ID debe ser un número válido.");
+            setErrors((prevErrors) => ({ ...prevErrors, IDproductos: true }));
+            return; // Detiene el envío del formulario si no es un número válido
+        }
 
         try {
             const response = await fetch("/api/RegistroProducto", {
@@ -123,8 +130,10 @@ const ProductForm = (selectedId) => {
             const result = await response.json();
             if (response.ok) {
                 setResponseMessage("Producto agregado exitosamente.");
+                toast.success("Producto agregado exitosamente.");
             } else {
-                setResponseMessage(`Error: ${result.error}`);
+               
+                toast.error(`Error: ${result.error}`);
             }
         } catch (error) {
             setResponseMessage("Error al conectar con el servidor.");
@@ -133,18 +142,24 @@ const ProductForm = (selectedId) => {
     };
 
     return (
-        <div style={styles.container}>
+        <div className="flex justify-center" style={styles.container}>
+         
         <h1 style={styles.title}>Agregar Producto</h1>
+        <h5 className="text-red-600 text-start text-"> * Todos los campos son obligatorios</h5>
         <form onSubmit={handleSubmit} style={styles.form}>
           <div style={styles.formGroup}>
             <label style={styles.label}>ID Producto:</label>
             <input
               type="text"
+              placeholder="Inserta un número válido, evita repetirlos"
               name="IDproductos"
               value={formData.IDproductos}
               onChange={handleChange}
               required
-              style={styles.input}
+              style={{
+                ...styles.input,
+                ...(errors.IDproductos && styles.inputError), 
+            }}
             />
           </div>
           <div style={styles.formGroup}>
@@ -152,6 +167,7 @@ const ProductForm = (selectedId) => {
             <input
               type="text"
               name="Nombre_Producto"
+              placeholder="Ejemplo: hilo, estambre, etc."
               value={formData.Nombre_Producto}
               onChange={handleChange}
               required
@@ -163,6 +179,7 @@ const ProductForm = (selectedId) => {
             <input
               type="number"
               name="Existencias"
+              placeholder="Cantidad de productos que hay"
               value={formData.Existencias}
               onChange={handleChange}
               required
@@ -175,6 +192,7 @@ const ProductForm = (selectedId) => {
               type="number"
               step="1.00"
               name="Precio"
+             
               value={formData.Precio}
               onChange={handleChange}
               required
@@ -186,17 +204,19 @@ const ProductForm = (selectedId) => {
             <input
               type="text"
               name="Descripcion"
+              placeholder="Inserte las características del producto"
               value={formData.Descripcion}
               onChange={handleChange}
               required
               style={styles.input}
             />
           </div>
-          <div style={styles.formGroup}>
+          <div className="pb-8" style={styles.formGroup}>
             <label style={styles.label}>ID Proveedor:</label>
             <input
               type="text"
               name="ID_proveedor"
+              placeholder="Selecciona un proveedor en la parte izquierda"
               value={formData.ID_proveedor || ""}   
               readOnly
               
@@ -204,7 +224,13 @@ const ProductForm = (selectedId) => {
               style={styles.input}
             />
           </div>
-          <button type="submit" style={styles.button}>
+          <button className="bg-blue-500 hover:bg-green-600  " type="submit" style={{
+            padding: "12px",
+            fontSize: "1rem",
+            alignSelf: "center",
+            border: "none",
+            borderRadius: "4px",
+          }}>
             Agregar Producto
           </button>
         </form>

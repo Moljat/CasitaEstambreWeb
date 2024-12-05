@@ -14,10 +14,14 @@ export default function ProdTable() {
 
   const [busqueda, setBusqueda] = useState("");
 
-  // Filtrar productos que contengan el término de búsqueda en el nombre
-  const productosFiltrados = productos.filter((producto) =>
-    producto.Nombre_Producto.toLowerCase().includes(busqueda.toLowerCase())
-  );
+  // Filtrar productos que contengan el término de búsqueda en el nombre e ID
+  const productosFiltrados = productos.filter((producto) => {
+    const busquedaLower = busqueda.toLowerCase(); // Hacer minúsculas la búsqueda
+    const nombreCoincide = producto.Nombre_Producto.toLowerCase().includes(busquedaLower);
+    const idCoincide = producto.IDproductos.toString().includes(busquedaLower); 
+
+    return nombreCoincide || idCoincide; 
+});
 
   useEffect(() => {
     // Hacer la petición al endpoint API de Next.js
@@ -47,7 +51,9 @@ export default function ProdTable() {
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
+    <div style={{
+      
+    }}>
     <h1 style={{ textAlign: "center", fontSize: "40px", color: "var(--geist-foreground)" }}>
       Lista de Productos
     </h1>
@@ -56,19 +62,23 @@ export default function ProdTable() {
     <div style={{ textAlign: "center", marginBottom: "20px" }}>
       <input
         type="text"
-        placeholder="Buscar por nombre..."
+        placeholder="Buscar por nombre o ID..."
         value={busqueda}
         onChange={(e) => setBusqueda(e.target.value)}
         style={{
           padding: "10px",
           fontSize: "16px",
-          width: "50%",
+          width: "100%",
           borderRadius: "5px",
           border: "1px solid #ccc"
         }}
       />
     </div>
 
+        <div style={{
+          maxHeight: '600px',
+          overflowY: 'auto',
+        }}>
     {productosFiltrados.length === 0 ? (
       <div 
         style={{
@@ -78,7 +88,8 @@ export default function ProdTable() {
           height: "200px",
           fontSize: "24px",
           color: "var(--geist-foreground)",
-          backgroundColor: "var(--geist-background)"
+          backgroundColor: "var(--geist-background)",
+        
         }}
       >
         
@@ -86,18 +97,15 @@ export default function ProdTable() {
     ) : (
       <table className="border-separate table-auto"
         style={{
-          width: "50%",
+          width: "100%",
           borderCollapse: "collapse",
           margin: "auto",
-          paddingLeft: "15px",
-          paddingRight: "15px"
         }}
       >
         <thead>
           <tr className='bg-gray-600' style={{ textAlign: "center", color: "var(--geist-background)" }}>
+            <th style={celdaTabla}>ID</th>
             <th style={celdaTabla}>Nombre</th>
-            <th style={celdaTabla}>Precio</th>
-            <th style={celdaTabla}>Existencias</th>
             <th style={celdaTabla}>Descripción</th>
           </tr>
         </thead>
@@ -105,15 +113,16 @@ export default function ProdTable() {
         <tbody>
           {productosFiltrados.map((producto) => (
             <tr key={producto.IDproductos}>
+              <td style={celdaTabla}>{producto.IDproductos}</td>
               <td style={celdaTabla}>{producto.Nombre_Producto}</td>
-              <td style={celdaTabla}>${producto.Precio}</td>
-              <td style={celdaTabla}>{producto.Existencias}</td>
               <td style={celdaTabla}>{producto.Descripcion}</td>
             </tr>
           ))}
         </tbody>
       </table>
     )}
+
+        </div>
   </div>
 );
 };

@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import AltaProd from "./AltaProd";
 import ProvTable from "./ProvTable";
 import ProdTable from "./ProdTable";
+import Ayuda from "./Ayuda";
+import { Toaster } from "react-hot-toast";
 
 const ProductForm = () => {
     const [selectedId, setSelectedId] = useState(null);
@@ -17,23 +19,34 @@ const ProductForm = () => {
 
 
     return (
+      <div className="pt-20">
+        <Toaster />
+         <h1  className="text-8xl bg-transparent " style={{ flexBasis: "100%", textAlign: "center"}}>ALTA DE PRODUCTOS</h1> 
         <div
-        className=""
+        className="flex-grow"
         style={{
           display: "flex", 
           flexDirection: "row", 
           alignItems: "flex-start", 
-          justifyContent: "space-around", 
+          justifyContent: "center", 
           flexWrap: "wrap", 
-          gap: "20px", 
-          padding: "20px",
+          gap: "30px", 
+          padding: "50px",
           width: "100%", 
+          
         }}
       >
-        <h1  className="text-8xl" style={{ flexBasis: "100%", textAlign: "center"}}>ALTA DE PRODUCTOS</h1> 
+       
+        
         <ProvTable  setSelectedId={handleSetSelectedId}    /> 
         <AltaProd selectedId={selectedId}   /> 
-        <ProdTable  style={{ flex: "1 1 100%" }} /> 
+        <ProdTable className="pt-12" style={{ flex: "1 1 100%" }} /> 
+       
+      </div>
+      <div className="pt-36">
+      <Ayuda />
+
+      </div>
       </div>
     );
 };

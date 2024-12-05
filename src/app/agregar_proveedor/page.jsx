@@ -40,11 +40,10 @@
     };
   
     return (
-        <div style={styles.pageContainer}>
+        <div  style={styles.pageContainer}>
           <h1 className='pb-12'
           style={{
             textAlign: "center",
-            fontSize: "40px",
             color: "var(--geist-foreground)"
           }}>Gestión de Proveedores</h1>
           

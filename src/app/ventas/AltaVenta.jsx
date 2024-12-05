@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function AltaVenta({ productosSeleccionados }) {
     const [cliente, setCliente] = useState('');
@@ -13,10 +14,20 @@ export default function AltaVenta({ productosSeleccionados }) {
     const [fecha, setFecha] = useState('');
     const [hora, setHora] = useState('');
 
-    const aplicarDescuento = () => {
-        const totalConDescuento = subtotal - (subtotal * (descuento / 100));
-        setTotal(totalConDescuento);
+    const aplicarDescuento = (nuevoDescuento) => {
+        const descuentoAplicado = nuevoDescuento || descuento; 
+        const totalConDescuento = subtotal - (subtotal * (descuentoAplicado / 100));
+        console.log('Subtotal:', subtotal);
+        
+        console.log('Total con descuento:', totalConDescuento);
+        if(nuevoDescuento <= 0){
+            setTotal(subtotal);
+        }else {
+
+            setTotal(totalConDescuento);
+        }
     };
+    
 
     // Actualizar la fecha y hora cada vez que se cargue el componente
     useEffect(() => {
@@ -42,9 +53,14 @@ export default function AltaVenta({ productosSeleccionados }) {
             const total = productosSeleccionados.reduce((acc, prod) => {
                 return acc + parseFloat(prod.Precio) || 0; // Asegurarse de que el valor sea numérico
             }, 0);
-            setSubtotal(total); // Actualizamos el subtotal
+            setSubtotal(total); 
+            
+           
         }
-    }, [productosSeleccionados]);
+        
+    }
+        
+    , [productosSeleccionados]);
 
     // Calcular cambio automáticamente cuando se actualiza el totalPagado
     useEffect(() => {
@@ -58,12 +74,13 @@ export default function AltaVenta({ productosSeleccionados }) {
     const handleAplicarVenta = () => {
         // Lógica para aplicar la venta, por ejemplo, enviarla a la base de datos o realizar otras acciones
         console.log('Venta aplicada');
+        toast.success('Venta aplicada correctamente');
     };
 
     return (
         <div className="p-4 border rounded-lg shadow-lg">
             <h1 className="text-3xl font-bold text-center mb-4">Punto de Venta</h1>
-
+            <Toaster />
             {/* Fecha y Hora */}
             <div className="flex justify-between text-lg mb-4">
                 <span>Fecha: {fecha}</span>
@@ -83,25 +100,6 @@ export default function AltaVenta({ productosSeleccionados }) {
                 />
             </div>
 
-            {/* Descuento */}
-            <div className="mb-4">
-                <label htmlFor="descuento" className="block font-semibold">Descuento</label>
-                <input
-                    id="descuento"
-                    type="number"
-                    value={descuento}
-                    step={5}
-                    min={0}
-                    onChange={(e) => {
-                        const descuentoValue = Number(e.target.value);
-                        setDescuento(descuentoValue);
-                        aplicarDescuento(); // Aplica el descuento al cambiar el valor
-                    }}
-                    className="w-full p-2 border rounded mt-2"
-                    placeholder="Ingrese el descuento"
-                />
-            </div>
-
             {/* Subtotal */}
             <div className="mb-4">
                 <label htmlFor="subtotal" className="block font-semibold">Subtotal</label>
@@ -114,6 +112,33 @@ export default function AltaVenta({ productosSeleccionados }) {
                     className="w-full p-2 border rounded mt-2"
                     placeholder="Ingrese el subtotal"
                 />
+            </div>
+
+                        {/* Descuento */}
+                        <div className="mb-4">
+                <label htmlFor="descuento" className="block font-semibold">Descuento</label>
+                <select
+                    id="descuento"
+                    value={descuento}
+                    onChange={(e) => {
+                        const descuentoValue = Number(e.target.value);
+                        setDescuento(descuentoValue); 
+                        aplicarDescuento(descuentoValue); 
+                    }}
+                    className="w-full p-2 border rounded mt-2"
+                >
+                    {/* Opciones del menú desplegable */}
+                    <option value="" disabled>Seleccione un descuento</option>
+                    <option value="0">0%</option>
+                    <option value="5">5%</option>
+                    <option value="10">10%</option>
+                    <option value="15">15%</option>
+                    <option value="20">20%</option>
+                    <option value="25">25%</option>
+                    <option value="30">30%</option>
+                    <option value="50">50%</option>
+                    <option value="75">75%</option>
+                </select>
             </div>
 
             {/* Total */}

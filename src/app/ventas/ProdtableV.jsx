@@ -90,7 +90,7 @@ const ProdTable = ( {setSelectedProducto}   ) => {
                   backgroundColor: '#f8f8f8',
                   borderBottom: '2px solid #ddd',
                 }}>
-                  <th style={{ padding: '10px' }}>ID</th>
+                  
                   <th style={{ padding: '10px' }}>Nombre</th>
                   <th style={{ padding: '10px' }}>Precio</th>
                   <th style={{ padding: '10px' }}></th>
@@ -108,7 +108,7 @@ const ProdTable = ( {setSelectedProducto}   ) => {
                     onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f0f8ff'}
                     onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#fff'}
                   >
-                    <td style={{ padding: '10px' }}>{prod.IDproductos}</td>
+                    
                     <td style={{ padding: '10px' }}>{prod.Nombre_Producto}</td>
                     <td style={{ padding: '10px' }}>{prod.Precio}</td>
                     <td style={{ padding: '10px' }}>

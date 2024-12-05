@@ -62,6 +62,7 @@ const ProvTable = ({ setSelectedId }) => {
         alignItems: 'flex-start',
         gap: '20px',
         padding: '20px',
+        fontFamily: 'Roboto',
       }}>
         <div style={{
           flex: '1',
@@ -70,7 +71,7 @@ const ProvTable = ({ setSelectedId }) => {
         }}></div>
 
         <div style={{ flex: '1' }}>
-          <h3>Selecciona un Producto para Modificar</h3>
+          <h3 className='text-justify text-2xl pb-6'>Selecciona un Producto para Modificar</h3>
           <div style={{
             maxHeight: '600px',
             overflowY: 'auto',
@@ -103,18 +104,17 @@ const ProvTable = ({ setSelectedId }) => {
                       backgroundColor: '#fff',
                       transition: 'background-color 0.3s',
                     }}
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f0f8ff'}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#7c3aed   '}
                     onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#fff'}
                   >
                     <td style={{ padding: '10px' }}>{prov.IDproveedor}</td>
                     <td style={{ padding: '10px' }}>{prov.NomProveedor}</td>
                     <td style={{ padding: '10px' }}>{prov.Compañia}</td>
                     <td style={{ padding: '10px' }}>
-                      <button
+                      <button className='bg-blue-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded 
+                                           transition duration-150 ease-in-out'
                         style={{
                           padding: '6px 12px',
-                          backgroundColor: '#007bff',
-                          color: '#fff',
                           border: 'none',
                           borderRadius: '4px',
                           cursor: 'pointer',

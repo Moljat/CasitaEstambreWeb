@@ -43,9 +43,9 @@ export default function DetalleVentaTable({ productos, onEliminarProducto, setSu
                     </tr>
                 </thead>
                 <tbody>
-                    {productos.map((prod, index) => (
+                    {productos.map((prod) => (
                         <tr
-                            key={uniqueID++}
+                            key={prod.ID_producto}
                             style={{
                                 borderBottom: "1px solid #ddd",
                                 backgroundColor: "#fff",
@@ -54,12 +54,12 @@ export default function DetalleVentaTable({ productos, onEliminarProducto, setSu
                             onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#f8f9fa")}
                             onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#fff")}
                         >
-                            <td style={tdStyle}>{prod.IDproductos}</td>
+                            <td style={tdStyle}>{uniqueID}</td>
                             <td style={tdStyle}>{prod.Nombre_Producto}</td>
                             <td style={tdStyle}>{prod.Precio}</td>    
                             <td style={tdStyle}>
                                 <button
-                                    onClick={() => onEliminarProducto(prod.IDproductos)}
+                                    onClick={() => onEliminarProducto(prod.ID_producto)}
                                     style={{
                                         padding: "6px 12px",
                                         backgroundColor: "#dc3545",
