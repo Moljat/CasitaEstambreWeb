@@ -90,7 +90,7 @@ const ModificarTable = () => {
           flex: "1", 
           maxWidth: "45%", 
         }}>
-          <h3>Selecciona un Producto para Modificar</h3>
+          <h3 className='text-center text-4xl pb-8'>Selecciona un Proveedor para Modificar</h3>
           <div style={{
             maxHeight: "800px", 
             overflowY: "auto",  
@@ -121,17 +121,15 @@ const ModificarTable = () => {
                     backgroundColor: "#fff", 
                     transition: "background-color 0.3s" 
                   }}
-                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "#f0f8ff"}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "#7c3aed"}
                   onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "#fff"}>
                     <td style={{ padding: "10px" }}>{prov.IDproveedor}</td>
                     <td style={{ padding: "10px" }}>{prov.NomProveedor}</td>
                     <td style={{ padding: "10px" }}>{prov.Compañia}</td>
                     <td style={{ padding: "10px" }}>
-                      <button 
+                      <button className='bg-blue-500 hover:bg-green-500 text-white font-bold py-2 px-4 rounded'
                         style={{
                           padding: "6px 12px",
-                          backgroundColor: "#007bff",
-                          color: "#fff",
                           border: "none",
                           borderRadius: "4px",
                           cursor: "pointer",
@@ -147,12 +145,7 @@ const ModificarTable = () => {
               </tbody>
             </table>
           </div>
-          {selectedProveedor && (
-            <div style={{ marginTop: "20px" }}>
-              <h4>Proveedor Seleccionado: {selectedProveedor.NomProveedor}</h4>
-              
-            </div>
-          )}
+          
         </div>
       </div>
     </div>

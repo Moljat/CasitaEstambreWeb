@@ -41,40 +41,42 @@ const ModificarCom = ({ proveedor , selectedProveedor}) => {
       border: "1px solid #ccc",
       borderRadius: "4px",
       outline: "none",
-      transition: "border-color 0.3s",
+      transition: "border-color 0.3s, background-color 0.3s", // Transición para suavizar el cambio
+    },
+    formInputDisabled: {
+      backgroundColor: "#d3d3d3", // Fondo más oscuro
+      cursor: "not-allowed", // Indicador visual de estado deshabilitado
     },
     formInputFocus: {
       borderColor: "#28a745",
     },
-    
-        formSubmitButton: {
-          padding: "12px",
-          backgroundColor: "#007bff",
-          color: "white",
-          fontSize: "1rem",
-          border: "none",
-          borderRadius: "4px",
-          cursor: "pointer",
-          transition: "background-color 0.3s",
-        },
-        formSubmitButtonDisabled: {
-          padding: "12px",
-          backgroundColor: "#cccccc",  // Color gris para indicar que está deshabilitado
-          color: "#666666",  // Texto gris para el estado deshabilitado
-          fontSize: "1rem",
-          border: "none",
-          borderRadius: "4px",
-          cursor: "not-allowed",  // Cursor cambiado a "no permitido"
-          transition: "background-color 0.3s",
-        },
-      
+    formSubmitButton: {
+      padding: "12px",
+      backgroundColor: "#007bff",
+      color: "white",
+      fontSize: "1rem",
+      border: "none",
+      borderRadius: "4px",
+      cursor: "pointer",
+      transition: "background-color 0.3s",
+    },
+    formSubmitButtonDisabled: {
+      padding: "12px",
+      backgroundColor: "#cccccc", // Color gris para indicar que está deshabilitado
+      color: "#666666", // Texto gris para el estado deshabilitado
+      fontSize: "1rem",
+      border: "none",
+      borderRadius: "4px",
+      cursor: "not-allowed", // Cursor cambiado a "no permitido"
+      transition: "background-color 0.3s",
+    },
     responseMessage: {
       marginTop: "20px",
       fontSize: "1rem",
       color: "#28a745", // Verde para mensajes de éxito
     },
   };
-
+  
   // Estado para manejar los cambios del formulario
   const [formData, setFormData] = useState({
     IDproveedor: "",
@@ -150,9 +152,12 @@ const ModificarCom = ({ proveedor , selectedProveedor}) => {
             type="text"
             name="IDproveedor"
             id="IDproveedor"
+            placeholder="Selecciona un proveedor..."
             value={formData.IDproveedor}
+            disabled={!selectedProveedor}
             onChange={handleChange}
             required
+            className="cursor-default"
             
             style={{
                 ...styles.formInput,
@@ -171,9 +176,13 @@ const ModificarCom = ({ proveedor , selectedProveedor}) => {
             name="NomProveedor"
             id="NomProveedor"
             value={formData.NomProveedor}
+            disabled={!selectedProveedor}
             onChange={handleChange}
             required
-            style={styles.formInput}
+            style={{
+              ...styles.formInput,
+              ...(selectedProveedor ? {} : styles.formInputDisabled), // Aplica estilo deshabilitado si no está seleccionado
+            }}
           />
         </div>
 
@@ -186,9 +195,13 @@ const ModificarCom = ({ proveedor , selectedProveedor}) => {
             name="ApellPaProv"
             id="ApellPaProv"
             value={formData.ApellPaProv}
+            disabled={!selectedProveedor}
             onChange={handleChange}
             required
-            style={styles.formInput}
+            style={{
+              ...styles.formInput,
+              ...(selectedProveedor ? {} : styles.formInputDisabled), // Aplica estilo deshabilitado si no está seleccionado
+            }}
           />
         </div>
 
@@ -201,9 +214,13 @@ const ModificarCom = ({ proveedor , selectedProveedor}) => {
             name="ApellMaProv"
             id="ApellMaProv"
             value={formData.ApellMaProv}
+            disabled={!selectedProveedor}
             onChange={handleChange}
             required
-            style={styles.formInput}
+            style={{
+              ...styles.formInput,
+              ...(selectedProveedor ? {} : styles.formInputDisabled), // Aplica estilo deshabilitado si no está seleccionado
+            }}
           />
         </div>
 
@@ -216,9 +233,13 @@ const ModificarCom = ({ proveedor , selectedProveedor}) => {
             name="Celular"
             id="Celular"
             value={formData.Celular}
+            disabled={!selectedProveedor}
             onChange={handleChange}
             required
-            style={styles.formInput}
+            style={{
+              ...styles.formInput,
+              ...(selectedProveedor ? {} : styles.formInputDisabled), // Aplica estilo deshabilitado si no está seleccionado
+            }}
           />
         </div>
 
@@ -231,9 +252,13 @@ const ModificarCom = ({ proveedor , selectedProveedor}) => {
             name="Compañia"
             id="Compañia"
             value={formData.Compañia}
+            disabled={!selectedProveedor}
             onChange={handleChange}
             required
-            style={styles.formInput}
+            style={{
+              ...styles.formInput,
+              ...(selectedProveedor ? {} : styles.formInputDisabled), // Aplica estilo deshabilitado si no está seleccionado
+            }}
           />
         </div>
 
@@ -247,8 +272,12 @@ const ModificarCom = ({ proveedor , selectedProveedor}) => {
             id="Folio"
             value={formData.Folio}
             onChange={handleChange}
+            disabled={!selectedProveedor}
             required
-            style={styles.formInput}
+            style={{
+              ...styles.formInput,
+              ...(selectedProveedor ? {} : styles.formInputDisabled), // Aplica estilo deshabilitado si no está seleccionado
+            }}
           />
         </div>
 
@@ -261,12 +290,16 @@ const ModificarCom = ({ proveedor , selectedProveedor}) => {
             name="Fecha_Alta"
             id="Fecha_Alta"
             value={formData.Fecha_Alta}
+            disabled={!selectedProveedor}
             onChange={handleChange}
             required
-            style={styles.formInput}
+            style={{
+              ...styles.formInput,
+              ...(selectedProveedor ? {} : styles.formInputDisabled), // Aplica estilo deshabilitado si no está seleccionado
+            }}
           />
         </div>
-            <Toaster position="top"/>
+            <Toaster position="top-center"/>
         <button onClick={() => handleSubmit()}
         type="submit" 
         style={selectedProveedor ? styles.formSubmitButton : styles.formSubmitButtonDisabled} 

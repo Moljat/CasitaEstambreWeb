@@ -4,6 +4,7 @@
   import AltaForm from './AltaForm';
   import ModificarTable from './ModificarTable';
   import EliminarTable from './EliminarTable';
+import Ayuda from './Ayuda';
 
   const styles = {
     pageContainer: {
@@ -21,14 +22,12 @@
       marginBottom: "20px",
     },
     button: {
-      padding: "10px 20px",
-      fontSize: "1rem",
-      border: "none",
-      backgroundColor: "#007bff",
+      padding: "15px 30px", 
+      fontSize: "1.2rem", 
+      borderRadius: "8px", 
+      margin: "10px", 
       color: "white",
-      borderRadius: "4px",
-      cursor: "pointer",
-      transition: "background-color 0.3s",
+      transition: "transform 0.3s ease, background-color 0.3s ease",
     }
   };
   
@@ -40,17 +39,20 @@
     };
   
     return (
+
+      <div>
+
         <div  style={styles.pageContainer}>
-          <h1 className='pb-12'
+          <h1 className='pb-12 text-6xl'
           style={{
             textAlign: "center",
             color: "var(--geist-foreground)"
           }}>Gestión de Proveedores</h1>
           
           <div style={styles.buttonContainer}>
-            <button className="transition duration-0 hover:duration-150" onClick={() => handleAction('alta')} style={styles.button}>Alta</button>
-            <button onClick={() => handleAction('modificacion')} style={styles.button}>Modificación</button>
-            <button onClick={() => handleAction('eliminacion')} style={styles.button}>Eliminación</button>
+            <button className="transition ease-in-out delay-300 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-green-600 duration-600 hover:shadow-inner  " onClick={() => handleAction('alta')} style={styles.button}>Alta</button>
+            <button className="transition ease-in-out delay-300 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-purple-600 duration-600 hover:shadow-inner "   onClick={() => handleAction('modificacion')} style={styles.button}>Modificación</button>
+            <button className=" transition ease-in-out delay-300 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-red-600 duration-600 hover:shadow-inner " onClick={() => handleAction('eliminacion')} style={styles.button}>Eliminación</button>
           </div>
       
           {/* Renderización condicional */}
@@ -58,6 +60,8 @@
           {action === 'modificacion' && <ModificarTable />}
           {action === 'eliminacion' && <EliminarTable />}
         </div>
+        <Ayuda />
+      </div>
       );
 
       

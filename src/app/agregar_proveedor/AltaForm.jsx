@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { toast, Toaster } from 'react-hot-toast';
 
 const AltaForm = () => {
 
@@ -76,6 +77,10 @@ const AltaForm = () => {
     Fecha_Alta: '',
   });
 
+      const [errors, setErrors] = useState({
+        IDproveedor: false, 
+    });
+
 
   const [responseMessage, setResponseMessage] = useState("");
 
@@ -86,6 +91,18 @@ const AltaForm = () => {
 
   const handleSubmit = async (e) => {
       e.preventDefault();
+
+      if (!/^\d+$/.test(formData.IDproveedor)) {
+          toast.error("El ID debe ser un número válido.");
+          setErrors((prevErrors) => ({ ...prevErrors, IDproveedor: true }));
+          return; // Detiene el envío del formulario si no es un número válido
+      }
+      if (parseInt(formData.IDproveedor, 10) < 0) {
+        toast.error("El ID no puede ser un número negativo.");
+        setErrors((prevErrors) => ({ ...prevErrors, IDproveedor: true }));
+        return; // Detiene el envío del formulario si no es un número válido
+    }
+
 
       try {
           const response = await fetch("/api/AgregarProveedor", {
@@ -111,6 +128,7 @@ const AltaForm = () => {
   return (
    
         <div style={styles.formContainer}>
+          <Toaster />
           <h1 style={styles.formTitle}>Agregar Proveedor</h1>
           <form onSubmit={handleSubmit} style={styles.form}>
             <div style={styles.formGroup}>
@@ -118,11 +136,14 @@ const AltaForm = () => {
               <input
                 type="text"
                 name="IDproveedor"
+                placeholder="Inserta un número válido, evita repetirlos"
                 id="IDproveedor"
+                
                 value={formData.IDproveedor}
                 onChange={handleChange}
                 required
                 style={styles.formInput}
+                className='caret-black'
               />
             </div>
       
@@ -131,11 +152,13 @@ const AltaForm = () => {
               <input
                 type="text"
                 name="NomProveedor"
+                placeholder="Ejemplo: Juan, María, etc."
                 id="NomProveedor"
                 value={formData.NomProveedor}
                 onChange={handleChange}
                 required
                 style={styles.formInput}
+                className='caret-black'
               />
             </div>
       
@@ -145,6 +168,7 @@ const AltaForm = () => {
                 type="text"
                 name="ApellPaProv"
                 id="ApellPaProv"
+                placeholder="Apellido Paterno"
                 value={formData.ApellPaProv}
                 onChange={handleChange}
                 required
@@ -158,6 +182,7 @@ const AltaForm = () => {
                 type="text"
                 name="ApellMaProv"
                 id="ApellMaProv"
+                placeholder="Apellido Materno"
                 value={formData.ApellMaProv}
                 onChange={handleChange}
                 required
@@ -171,6 +196,7 @@ const AltaForm = () => {
                 type="text"
                 name="Celular"
                 id="Celular"
+                placeholder="Ejemplo: +52-614-123-4567"
                 value={formData.Celular}
                 onChange={handleChange}
                 required
@@ -184,6 +210,7 @@ const AltaForm = () => {
                 type="text"
                 name="Compañia"
                 id="Compañia"
+                placeholder="Nombre de la empresa"
                 value={formData.Compañia}
                 onChange={handleChange}
                 required
@@ -197,6 +224,7 @@ const AltaForm = () => {
                 type="text"
                 name="Folio"
                 id="Folio"
+                placeholder="Ej. F01020, F01021. El formato es F0 + 4 dígitos"
                 value={formData.Folio}
                 onChange={handleChange}
                 required

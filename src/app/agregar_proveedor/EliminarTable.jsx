@@ -65,19 +65,21 @@ const EliminarTable = () => {
 
   return (
     <div>
-      <div style={{ flex: "1", maxWidth: "45%" }}>
-        <h3>Buscar Proveedor</h3>
+      <div className='align-center' style={{ flex: "1", maxWidth: "100%" }}>
+        <h3 className='text-center text-4xl pb-8'>Eliminar Proveedor</h3>
+        <h4 className=' text-2xl pb-2'>Buscar Proveedor...</h4>
         <input
           type="text"
           placeholder="Buscar por nombre o compañía"
           value={searchQuery}
           onChange={handleSearchChange}
           style={{
-            padding: "6px 12px",
+            padding: "12px 12px",
             width: "100%",
             border: "1px solid #ccc",
             borderRadius: "4px",
             marginBottom: "20px",
+
           }}
         />
       </div>
@@ -97,18 +99,16 @@ const EliminarTable = () => {
               <tr
                 key={prov.IDproveedor}
                 style={{ borderBottom: "1px solid #ddd", backgroundColor: "#fff", transition: "background-color 0.3s" }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "#f0f8ff"}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "#7c3aed"}
                 onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "#fff"}
               >
                 <td style={{ padding: "10px" }}>{prov.IDproveedor}</td>
                 <td style={{ padding: "10px" }}>{prov.NomProveedor}</td>
                 <td style={{ padding: "10px" }}>{prov.Compañia}</td>
                 <td style={{ padding: "10px" }}>
-                  <button
+                  <button className='shadow-lg transition ease-in-out delay-50 bg-red-600 hover:-translate-y-1 hover:scale-102 hover:bg-red-700 hover:text-white duration-600 hover:shadow-inner'
                     style={{
                       padding: "6px 12px",
-                      backgroundColor: "#dc3545",
-                      color: "#fff",
                       border: "none",
                       borderRadius: "4px",
                       cursor: "pointer",

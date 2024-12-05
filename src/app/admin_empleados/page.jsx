@@ -46,7 +46,7 @@
             textAlign: "center",
             fontSize: "40px",
             color: "var(--geist-foreground)"
-          }}>Gestión de Proveedores</h1>
+          }}>Gestión de Empleados</h1>
           
           <div style={styles.buttonContainer}>
             <button className="transition duration-0 hover:duration-150" onClick={() => handleAction('alta')} style={styles.button}>Alta</button>
