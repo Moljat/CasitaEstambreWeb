@@ -3,8 +3,7 @@ export default function handler(req, res) {
     if (req.method === "POST") {
       const { email, password } = req.body;
   
-      // Simula validación (reemplaza con lógica real, como consultas a una base de datos)
-      if (email === "usuario@ejemplo.com" && password === "segana665") {
+      if (email === "moljat800@gmail.com" && password === "tecome123") {
         const token = "yd37xcnsn12nxiam1"; // Genera un token real aquí
         return res.status(200).json({ token });
       }
