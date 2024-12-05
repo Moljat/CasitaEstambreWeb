@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation"; // Asegúrate de usar el hook correcto
+import { toast, Toaster } from "react-hot-toast";
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -10,8 +11,7 @@ const LoginPage = () => {
   
 
   const handleLogin = async (e) => {
-  
-  
+    e.preventDefault(); // Evitar comportamiento por defecto del formulario
     try {
       const response = await fetch("/api/login", {
         method: "POST",
@@ -23,19 +23,23 @@ const LoginPage = () => {
   
       if (response.ok) {
         const { token } = await response.json();
-        localStorage.setItem("authToken", token); // Guarda el token en localStorage
+        localStorage.setItem("authToken", token); 
+        toast.success("Inicio de sesión exitoso");
         window.location.reload(); 
       } else {
         const { error } = await response.json();
         setError(error || "Error desconocido");
+        toast.error(error || "Credenciales incorrectas");
       }
     } catch (err) {
       setError("Ocurrió un error. Por favor, inténtalo de nuevo.");
+      toast.error("Error al conectar con el servidor");
     }
   };
 
   return (
     <div style={styles.container}>
+      <Toaster />
       <h1 style={styles.title}>Iniciar Sesión</h1>
       <form onSubmit={handleLogin} style={styles.form}>
         <div style={styles.formGroup}>
